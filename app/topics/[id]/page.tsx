@@ -123,6 +123,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
 
         try {
             setIsLoading(true);
+
             const response = await fetch('/api/generate-comment', {
                 method: 'POST',
                 headers: {
@@ -139,17 +140,17 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
             }
 
             const data = await response.json();
-            const newReflectionComment = data.comment;
-            setReflectionComment(newReflectionComment);
-            setDisplayedReflectionComment(''); // 初期化
 
-            // タイプライターアニメーションを開始
+            const fullText = (data.comment ?? '').toString().trim();
+            setReflectionComment(fullText);
+            setDisplayedReflectionComment('');
             setIsReflectionTyping(true);
-            let currentText = newReflectionComment;
+
+            let currentText = '';
             const interval = setInterval(() => {
-                if (currentText.length > 0) {
-                    setDisplayedReflectionComment(prev => prev + currentText[0]);
-                    currentText = currentText.slice(1);
+                if (currentText.length < fullText.length) {
+                    currentText = fullText.slice(0, currentText.length + 1);
+                    setDisplayedReflectionComment(currentText);
                 } else {
                     clearInterval(interval);
                     setIsReflectionTyping(false);
@@ -158,12 +159,14 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                 }
             }, 50);
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error generating reflection comment:', error);
             alert('コメントの生成に失敗しました。もう一度お試しください。');
         } finally {
             setIsLoading(false);
         }
     };
+
+
 
     useEffect(() => {
         if (showBibleReferences && !finalComment) {
@@ -489,6 +492,17 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                             この学びのセッションは終了です。<br />
                                             神の祝福があなたと共にありますように。
                                         </p>
+                                    </div>
+                                    <div className="flex justify-between items-center mb-8 mt-4">
+                                        <Link
+                                            href="/"
+                                            className="inline-flex items-center px-4 py-1 text-sm font-medium text-blue-600 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors"
+                                        >
+                                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                            </svg>
+                                            トピック一覧に戻る
+                                        </Link>
                                     </div>
                                 </motion.div>
                             )}
