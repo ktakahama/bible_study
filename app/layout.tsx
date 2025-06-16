@@ -3,7 +3,28 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'BIBLE DIVE IN!',
-  description: '聖書の教えを学び、深く理解するためのサポートツール',
+  description: '誰でも簡単、ひとりで学べる聖書スタディガイド',
+  openGraph: {
+    title: 'BIBLE DIVE IN!',
+    description: '誰でも簡単、ひとりで学べる聖書スタディガイド',
+    url: 'https://bible-study-zeta.vercel.app/',
+    siteName: 'BIBLE DIVE IN!',
+    images: [
+      {
+        url: 'https://bible-study-zeta.vercel.app/ogp.png',
+        width: 1200,
+        height: 630,
+        alt: 'BIBLE DIVE IN! 誰でも簡単、ひとりで学べる聖書スタディガイド',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BIBLE DIVE IN!',
+    description: 'BIBLE DIVE IN! 誰でも簡単、ひとりで学べる聖書スタディガイド',
+    images: ['https://bible-study-zeta.vercel.app/ogp.png'],
+  },
 };
 
 export default function RootLayout({
