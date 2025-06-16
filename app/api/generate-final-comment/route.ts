@@ -10,7 +10,7 @@ export async function POST(request: Request) {
         const { answers, questions, verse } = await request.json();
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4",
+            model: "gpt-4.1-mini",
             messages: [
                 {
                     role: "system",
@@ -36,7 +36,7 @@ ${answers.map((answer: string, index: number) => `質問${index + 1}: ${question
                 }
             ],
             temperature: 0.7,
-            max_tokens: 500,
+            max_tokens: 1000,
         });
 
         const comment = completion.choices[0].message.content;

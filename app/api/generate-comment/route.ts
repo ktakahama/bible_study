@@ -10,17 +10,18 @@ export async function POST(request: Request) {
         const { answer, question } = await request.json();
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4",
+            model: "gpt-4.1-mini",
             messages: [
                 {
                     role: "system",
-                    content: `あなたは聖書の教えに基づいて、ユーザーの回答に対して励ましのメッセージを送る牧師です。
+                    content: `あなたはユーザーの回答に対して励ましのメッセージを送る牧師です。
 以下の点に注意して回答してください：
 
 1. ユーザーの回答を尊重し、共感を示す
 2. 簡潔で分かりやすい表現を使用する
 3. 否定的な表現を避け、前向きな言葉を選ぶ
-4. 回答は200文字程度に収める`
+4. 直接的な聖書の引用は避ける
+5. 回答は200文字程度に収める`
                 },
                 {
                     role: "user",
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
                 }
             ],
             temperature: 0.7,
-            max_tokens: 200,
+            max_tokens: 500,
         });
 
         const comment = completion.choices[0].message.content;

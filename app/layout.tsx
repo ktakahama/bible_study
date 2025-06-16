@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'バイブルスタディサポート',
+  title: 'BIBLE DIVE IN!',
   description: '聖書の教えを学び、深く理解するためのサポートツール',
 };
 

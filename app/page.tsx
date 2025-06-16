@@ -14,7 +14,7 @@ export default function Home() {
             </div>
 
             {/* ヒーローセクション */}
-            <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden mb-[-80px]">
+            <div className="relative min-h-[50vh] flex items-center justify-center overflow-hidden mb-[-23vh] mt-[-12vh]">
                 <div className="absolute inset-0 bg-[url('/church-bg.jpg')] bg-cover bg-center opacity-10"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/80 to-slate-50"></div>
 
@@ -35,46 +35,27 @@ export default function Home() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mb-8"
                     >
-                        <h1 className="text-7xl md:text-9xl font-bold text-slate-800 mb-6 tracking-tight">
+                        <h1 className="text-7xl md:text-9xl font-bold text-slate-800 mb-1 tracking-tight">
                             <div className="flex flex-col items-center">
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r tracking-[0.1em] from-blue-600 via-blue-500 to-blue-600">
                                     BIBLE
                                 </span>
-                                <span className="text-4xl md:text-5xl mt-4 font-medium tracking-[0.2em] text-blue-500/90">
-                                    DIVE IN
+                                <span className="text-4xl md:text-5xl mt-1 font-bold tracking-[0.3em] text-blue-500/90 w-full text-center">
+                                    DIVE IN!
                                 </span>
                             </div>
                         </h1>
                     </motion.div>
-
+                    {/* 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.7 }}
                         className="text-2xl md:text-3xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
                     >
-                        聖書から学ぶ、<br />
+                        聖書から学ぶ<br />
                         <span className="font-bold text-blue-600">生きるためのヒント</span>
-                    </motion.p>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.9 }}
-                        className="mt-12 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-slate-100/50 max-w-3xl mx-auto transform hover:scale-[1.02] transition-transform duration-300"
-                    >
-                        <div className="flex items-center gap-6 mb-6">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center shadow-lg">
-                                <span className="text-3xl">🤖</span>
-                            </div>
-                            <h2 className="text-2xl font-bold text-slate-800">AI牧師があなたの学びをサポート</h2>
-                        </div>
-                        <p className="text-slate-600 text-lg leading-relaxed">
-                            一人ひとりの理解度や興味に合わせて、<br />
-                            聖書の教えを分かりやすく解説します。<br />
-                            いつでも、どこでも、あなたのペースで学べます。
-                        </p>
-                    </motion.div>
+                    </motion.p> */}
                 </motion.div>
             </div>
 
@@ -104,7 +85,7 @@ export default function Home() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="h-[280px]"
+                                    className="h-[180px]"
                                 >
                                     <Link href={`/topics/${topic.id}`}>
                                         <div className="group relative h-full">
@@ -146,7 +127,7 @@ export default function Home() {
             {/* フッター */}
             <footer className="relative bg-slate-900/90 backdrop-blur-sm text-slate-50 py-12">
                 <div className="container mx-auto px-4 text-center">
-                    <p>© 2024 聖書から学ぶ人生の知恵. All rights reserved.</p>
+                    <p>© 2025 Bible Dive In. All rights reserved.</p>
                 </div>
             </footer>
         </main>
