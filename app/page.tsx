@@ -14,50 +14,54 @@ export default function Home() {
             </div>
 
             {/* ヒーローセクション */}
-            <div className="relative min-h-[50vh] flex items-center justify-center overflow-hidden mb-[-23vh] mt-[-12vh]">
+            <div className="relative min-h-[45vh] flex items-center justify-center overflow-hidden mb-[-15vh] mt-[-8vh]">
+                {/* 背景画像とグラデーション */}
                 <div className="absolute inset-0 bg-[url('/church-bg.jpg')] bg-cover bg-center opacity-10"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/80 to-slate-50"></div>
 
-                {/* 装飾的な円形要素 */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-slate-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-100/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+                {/* 装飾的な円形 */}
+                <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-slate-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-100/10 rounded-full blur-3xl animate-pulse delay-300"></div>
 
+                {/* メインコンテンツ */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+                    className="relative z-10 text-center px-2 max-w-5xl mx-auto"
                 >
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mb-8"
+                        className="mb-4"
                     >
-                        <h1 className="text-7xl md:text-9xl font-bold text-slate-800 mb-1 tracking-tight">
+                        <h1 className="text-6xl md:text-8xl font-bold text-slate-800 tracking-tight">
                             <div className="flex flex-col items-center">
                                 <span className="bg-clip-text text-transparent bg-gradient-to-r tracking-[0.1em] from-blue-600 via-blue-500 to-blue-600">
                                     BIBLE
                                 </span>
-                                <span className="text-4xl md:text-5xl mt-1 font-bold tracking-[0.3em] text-blue-500/90 w-full text-center">
+                                <span className="text-3xl md:text-5xl mt-2 font-bold tracking-[0.2em] text-blue-500/90 text-center">
                                     DIVE IN!
                                 </span>
                             </div>
                         </h1>
                     </motion.div>
-                    {/* 
-                    <motion.p
+
+                    {/* 吹き出しテキスト */}
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.7 }}
-                        className="text-2xl md:text-3xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+                        className="relative max-w-fit mx-auto bg-white text-slate-700 text-sm md:text-base leading-snug px-2 py-2 ml-2 rounded-lg shadow-sm tracking-wide
+                 before:content-[''] before:absolute before:-bottom-2 before:left-6 before:border-6 before:border-transparent before:border-t-white"
                     >
-                        聖書から学ぶ<br />
-                        <span className="font-bold text-blue-600">生きるためのヒント</span>
-                    </motion.p> */}
+                        学びたいトピックを選んでね💡📖
+                    </motion.div>
                 </motion.div>
             </div>
+
 
             {/* メインコンテンツ */}
             <div className="container mx-auto px-4 py-16 relative">

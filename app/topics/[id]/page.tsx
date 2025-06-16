@@ -173,7 +173,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-            <div className="max-w-5xl mx-auto px-4 py-8">
+            <div className="max-w-5xl mx-auto px-2 py-2">
                 <div className="flex gap-2">
                     {/* タイムライン */}
                     <div className="hidden md:block w-20 flex-shrink-0 mt-10 mr-7">
@@ -219,17 +219,17 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
 
                     {/* メインコンテンツ */}
                     <div className="flex-1 max-w-4xl">
-                        <div className="bg-white rounded-xl p-6 border border-slate-100 shadow-sm">
+                        <div className="bg-white rounded-xl p-2 border border-slate-100 shadow-sm">
                             {/* ヘッダー */}
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-center mb-12"
+                                className="text-center mb-5"
                             >
                                 <div className="flex justify-between items-center mb-8">
                                     <Link
                                         href="/"
-                                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors"
+                                        className="inline-flex items-center px-4 py-1 text-sm font-medium text-blue-600 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors"
                                     >
                                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -237,8 +237,8 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                         トピック一覧に戻る
                                     </Link>
                                 </div>
-                                <h1 className="text-4xl font-bold text-slate-800 mb-4">{topic.title}</h1>
-                                <p className="text-xl text-slate-600">{topic.description}</p>
+                                <h1 className="text-4xl font-bold text-slate-800 mb-2">{topic.title}</h1>
+                                <p className="text-md text-slate-600 mt-2">{topic.description} あなたの考えを教えてください。</p>
                             </motion.div>
 
                             <AnimatePresence mode="wait">
@@ -253,12 +253,8 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="bg-white rounded-2xl shadow-lg p-8"
+                                        className="bg-white rounded-2xl shadow-lg p-2"
                                     >
-                                        <div className="text-center mb-8">
-                                            <h2 className="text-2xl font-semibold text-slate-800 mb-2">あなたの考えを教えてください</h2>
-                                        </div>
-
                                         <div className="space-y-6">
                                             {/* これまでの回答 */}
                                             {answers.map((answer, index) => (
@@ -267,7 +263,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: index * 0.1 }}
-                                                    className="bg-white rounded-xl border border-slate-200 p-6 flex flex-col"
+                                                    className="bg-white rounded-xl border border-slate-200 p-3 flex flex-col"
                                                 >
                                                     <div className="flex items-center mb-4">
                                                         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
@@ -327,7 +323,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                         <motion.div
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            className="bg-white rounded-2xl shadow-lg p-8"
+                                            className="bg-white rounded-2xl shadow-lg p-3"
                                         >
                                             <div className="text-center mb-8">
                                                 <h2 className="text-2xl font-semibold text-slate-800 mb-2">聖書の教え</h2>
@@ -420,7 +416,7 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                             disabled={isLoading || !reflectionAnswer.trim()}
                                             className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            {isLoading ? '送信中...' : '学びを共有する'}
+                                            {isLoading ? '回答中...' : '学びを共有する'}
                                         </button>
                                     </form>
                                 </motion.div>

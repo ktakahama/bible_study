@@ -118,7 +118,7 @@ export default function AIChat({ onNext, question }: AIChatProps) {
                         : 'bg-blue-600 hover:bg-blue-700'
                         }`}
                 >
-                    {isLoading ? '送信中...' : '送信'}
+                    {isLoading ? '回答中...' : '回答'}
                 </motion.button>
             </div>
         </motion.form>
