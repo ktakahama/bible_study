@@ -70,7 +70,7 @@ export default function Home() {
                 <div className="container mx-auto px-4 py-3">
                     <div className="text-center">
                         <p className="text-xs sm:text-sm text-blue-200/80">
-                            <span className="font-medium">このアプリケーションはAIを活用して作成されています。</span>
+                            <span className="font-medium">このアプリケーションは一部AIを活用して作成されています。</span>
                             <span className="hidden sm:inline"> </span>
                             <span className="block sm:inline">AIによって生成されたコンテンツは、必ずしも完全な正確性を保証するものではありません。</span>
                         </p>
@@ -148,7 +148,7 @@ export default function Home() {
                 <div className="container mx-auto px-4 text-center">
                     <p className="mb-4">© 2025 Bible Dive In. All rights reserved.</p>
                     <div className="text-sm text-blue-200/80 max-w-2xl mx-auto">
-                        <p className="mb-2">このアプリケーションはAIを活用して作成されています。</p>
+                        <p className="mb-2">このアプリケーションは一部AIを活用して作成されています。</p>
                         <p>AIによって生成されたコンテンツは、必ずしも完全な正確性を保証するものではありません。</p>
                         <p>聖書の解釈や理解については、各自の判断と責任においてご利用ください。</p>
                     </div>
