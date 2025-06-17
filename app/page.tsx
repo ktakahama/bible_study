@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 relative">
+        <main className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-700 to-blue-400 relative">
             {/* 装飾的な背景要素 */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-blue-200/10 rounded-full blur-3xl"></div>
@@ -14,22 +14,33 @@ export default function Home() {
             </div>
 
             {/* ヒーローセクション */}
-            <div className="relative min-h-[45vh] flex items-center justify-center overflow-hidden mb-[-15vh] mt-[-8vh]">
-                {/* 背景画像とグラデーション */}
-                <div className="absolute inset-0 bg-[url('/church-bg.jpg')] bg-cover bg-center opacity-10"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/80 to-slate-50"></div>
-
-                {/* 装飾的な円形 */}
-                <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-slate-300/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-100/10 rounded-full blur-3xl animate-pulse delay-300"></div>
-
+            <div className="relative min-h-[30vh] sm:min-h-[20vh] flex items-center justify-center overflow-hidden mb-[2vh] sm:mb-[1vh]">
+                {/* 背景グラデーション */}
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-blue-500 to-blue-300 opacity-90"></div>
+                {/* 泡の装飾 */}
+                <div className="absolute bottom-20 left-1/4 w-4 h-4 bg-white/70 rounded-full blur-sm animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="absolute bottom-32 left-1/3 w-2 h-2 bg-white/60 rounded-full blur-sm animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute bottom-24 right-1/4 w-3 h-3 bg-white/80 rounded-full blur animate-bounce" style={{ animationDelay: '0.8s' }}></div>
+                <div className="absolute bottom-16 right-1/3 w-5 h-5 bg-white/50 rounded-full blur animate-bounce" style={{ animationDelay: '1.1s' }}></div>
+                {/* 波のSVG */}
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+                    <svg
+                        viewBox="0 0 1440 120"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-full h-24 md:h-32 lg:h-40"
+                        preserveAspectRatio="none"
+                    >
+                        <path fill="#3B82F6" fillOpacity="0.3" d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z" />
+                        <path fill="#2563EB" fillOpacity="0.5" d="M0,100 C400,180 1040,20 1440,100 L1440,120 L0,120 Z" />
+                    </svg>
+                </div>
                 {/* メインコンテンツ */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative z-10 text-center px-2 max-w-5xl mx-auto"
+                    className="relative z-10 text-center px-2 max-w-5xl mx-auto py-8 sm:py-0"
                 >
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
@@ -37,34 +48,38 @@ export default function Home() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mb-4"
                     >
-                        <h1 className="text-6xl md:text-8xl font-bold text-slate-800 tracking-tight">
-                            <div className="flex flex-col items-center">
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r tracking-[0.1em] from-blue-600 via-blue-500 to-blue-600">
-                                    BIBLE
-                                </span>
-                                <span className="text-3xl md:text-5xl mt-2 font-bold tracking-[0.2em] text-blue-500/90 text-center">
-                                    DIVE IN!
-                                </span>
-                            </div>
+                        <h1 className="font-extrabold text-white tracking-tight drop-shadow-lg text-5xl xs:text-6xl sm:text-7xl md:text-8xl flex flex-col md:flex-row items-center justify-center gap-0 md:gap-4">
+                            <span className="block md:inline text-shadow-lg">BIBLE</span>
+                            <span className="block md:inline md:ml-4 mt-2 md:mt-0 text-shadow-lg">DIVE IN!</span>
                         </h1>
                     </motion.div>
-
                     {/* 吹き出しテキスト */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.7 }}
-                        className="relative max-w-fit mx-auto bg-white text-slate-700 text-sm md:text-base leading-snug px-2 py-2 ml-2 rounded-lg shadow-sm tracking-wide
-                 before:content-[''] before:absolute before:-bottom-2 before:left-6 before:border-6 before:border-transparent before:border-t-white"
+                        className="relative max-w-fit mx-auto bg-white/90 text-blue-800 text-sm md:text-base leading-snug px-3 py-2 rounded-lg shadow tracking-wide mt-4"
                     >
                         学びたいトピックを選んでね💡📖
                     </motion.div>
                 </motion.div>
             </div>
 
+            {/* AI利用に関する注意事項 */}
+            <div className="bg-blue-900/20 backdrop-blur-sm">
+                <div className="container mx-auto px-4 py-3">
+                    <div className="text-center">
+                        <p className="text-xs sm:text-sm text-blue-200/80">
+                            <span className="font-medium">このアプリケーションはAIを活用して作成されています。</span>
+                            <span className="hidden sm:inline"> </span>
+                            <span className="block sm:inline">AIによって生成されたコンテンツは、必ずしも完全な正確性を保証するものではありません。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
             {/* メインコンテンツ */}
-            <div className="container mx-auto px-4 py-16 relative">
+            <div className="container mx-auto px-4 py-5 relative">
                 {/* カテゴリセクション */}
                 {categories.map((category, categoryIndex) => (
                     <motion.div
@@ -75,10 +90,10 @@ export default function Home() {
                         className="mb-16"
                     >
                         <div className="flex items-center gap-4 mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 min-w-0">
+                            <h2 className="text-2xl font-bold text-blue-100 min-w-0 drop-shadow">
                                 {category.title}
                             </h2>
-                            <div className="flex-1 h-px bg-slate-200"></div>
+                            <div className="flex-1 h-px bg-blue-300/60"></div>
                         </div>
 
                         {/* トピックグリッド */}
@@ -93,16 +108,16 @@ export default function Home() {
                                 >
                                     <Link href={`/topics/${topic.id}`}>
                                         <div className="group relative h-full">
-                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-200 to-slate-300 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                                            <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-6 hover:shadow-xl transition-all duration-300 border border-slate-100/50 h-full flex flex-col">
-                                                <h3 className="text-3xl font-bold text-slate-800 mb-3">
+                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/40 to-blue-200/30 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                                            <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-6 hover:shadow-xl transition-all duration-300 border border-blue-100/50 h-full flex flex-col">
+                                                <h3 className="text-3xl font-bold text-blue-900 mb-3 text-white">
                                                     {topic.title}
                                                 </h3>
-                                                <p className="text-slate-600 mb-4 text-base line-clamp-2">
+                                                <p className="text-blue-800 mb-4 text-base line-clamp-2">
                                                     {topic.description}
                                                 </p>
                                                 <div className="flex-grow"></div>
-                                                <div className="flex items-center text-blue-700 font-medium">
+                                                <div className="flex items-center text-blue-600 font-medium">
                                                     <span>詳しく見る</span>
                                                     <svg
                                                         className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-200"
@@ -129,9 +144,14 @@ export default function Home() {
             </div>
 
             {/* フッター */}
-            <footer className="relative bg-slate-900/90 backdrop-blur-sm text-slate-50 py-12">
+            <footer className="relative bg-blue-900/95 backdrop-blur-sm text-blue-100 py-12">
                 <div className="container mx-auto px-4 text-center">
-                    <p>© 2025 Bible Dive In. All rights reserved.</p>
+                    <p className="mb-4">© 2025 Bible Dive In. All rights reserved.</p>
+                    <div className="text-sm text-blue-200/80 max-w-2xl mx-auto">
+                        <p className="mb-2">このアプリケーションはAIを活用して作成されています。</p>
+                        <p>AIによって生成されたコンテンツは、必ずしも完全な正確性を保証するものではありません。</p>
+                        <p>聖書の解釈や理解については、各自の判断と責任においてご利用ください。</p>
+                    </div>
                 </div>
             </footer>
         </main>
