@@ -110,7 +110,7 @@ export default function Home() {
                                         <div className="group relative h-full">
                                             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/40 to-blue-200/30 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                                             <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-6 hover:shadow-xl transition-all duration-300 border border-blue-100/50 h-full flex flex-col">
-                                                <h3 className="text-3xl font-bold text-blue-900 mb-3 text-white">
+                                                <h3 className="text-3xl font-bold text-blue-900 mb-3">
                                                     {topic.title}
                                                 </h3>
                                                 <p className="text-blue-800 mb-4 text-base line-clamp-2">
