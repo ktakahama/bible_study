@@ -42,6 +42,9 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
     const [displayedReflectionComment, setDisplayedReflectionComment] = useState('');
     const [isReflectionTyping, setIsReflectionTyping] = useState(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [choiceLoading, setChoiceLoading] = useState(false);
+    const [choiceComment, setChoiceComment] = useState("");
+    const [choiceTyping, setChoiceTyping] = useState(false);
 
     if (!topic) {
         return (
@@ -166,7 +169,45 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
         }
     };
 
-
+    const handleChoice = async (choice: string) => {
+        setChoiceLoading(true);
+        setChoiceComment("");
+        setChoiceTyping(false);
+        try {
+            const response = await fetch('/api/generate-comment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answer: choice, question: topic.questions[0] })
+            });
+            if (!response.ok) throw new Error('コメントの生成に失敗しました');
+            const data = await response.json();
+            const comment = data.comment;
+            // タイプライター風
+            setChoiceTyping(true);
+            let currentText = '';
+            const interval = setInterval(() => {
+                if (currentText.length < comment.length) {
+                    currentText = comment.slice(0, currentText.length + 1);
+                    setChoiceComment(currentText);
+                } else {
+                    clearInterval(interval);
+                    setChoiceTyping(false);
+                    setTimeout(() => {
+                        handleNext(choice, comment);
+                        setChoiceComment("");
+                    }, 800);
+                }
+            }, 30);
+        } catch (e) {
+            setChoiceComment('コメントの生成に失敗しました。');
+            setTimeout(() => {
+                handleNext(choice, '');
+                setChoiceComment("");
+            }, 1000);
+        } finally {
+            setChoiceLoading(false);
+        }
+    };
 
     useEffect(() => {
         if (showBibleReferences && !finalComment) {
@@ -175,15 +216,15 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
     }, [showBibleReferences]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-700 to-blue-400">
             <div className="max-w-5xl mx-auto px-2 py-2">
                 <div className="flex gap-2">
                     {/* タイムライン */}
                     <div className="hidden md:block w-20 flex-shrink-0 mt-10 mr-7">
                         <div className="sticky top-8">
                             <div className="space-y-6">
-                                <div className={`flex items-center ${currentQuestionIndex === 0 ? 'text-blue-600' : 'text-slate-400'}`}>
-                                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${currentQuestionIndex === 0 ? 'bg-blue-100 ring-2 ring-blue-200' : 'bg-slate-100'}`}>
+                                <div className={`flex items-center ${currentQuestionIndex === 0 ? 'text-white' : 'text-slate-400'}`}>
+                                    <div className={`w-5 h-5 rounded-full flex items-center justify-center ${currentQuestionIndex === 0 ? 'bg-blue-100 ring-2 ring-blue-200 text-blue-800' : 'bg-slate-100'}`}>
                                         <span className="text-xs font-medium">1</span>
                                     </div>
                                     <span className="ml-1 text-xs font-medium tracking-wide">質問1</span>
@@ -310,11 +351,47 @@ export default function TopicPage({ params }: { params: Promise<{ id: string }> 
                                                         <h3 className="text-lg font-medium text-slate-800">{topic.questions[currentStep]}</h3>
                                                     </div>
                                                     <div>
-                                                        <AIChat
-                                                            key={`question-${currentStep}`}
-                                                            onNext={handleNext}
-                                                            question={topic.questions[currentStep]}
-                                                        />
+                                                        {currentStep === 0 ? (
+                                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                                                {["とてもそう思う", "ややそう思う", "あまりそう思わない", "全くそう思わない"].map((choice, idx) => (
+                                                                    <button
+                                                                        key={choice}
+                                                                        className="w-full bg-blue-50 border border-blue-200 rounded-lg py-3 px-4 text-blue-700 font-semibold hover:bg-blue-100 transition-colors"
+                                                                        onClick={() => handleChoice(choice)}
+                                                                        disabled={choiceLoading}
+                                                                    >
+                                                                        {choice}
+                                                                    </button>
+                                                                ))}
+                                                                {choiceLoading && (
+                                                                    <div className="col-span-2 flex justify-center items-center mt-2">
+                                                                        <span className="text-blue-500 animate-pulse">AI牧師がコメントを考えています...</span>
+                                                                    </div>
+                                                                )}
+                                                                {choiceComment && (
+                                                                    <div className="col-span-2 mt-4 bg-blue-50 rounded-xl p-4">
+                                                                        <div className="flex items-center mb-2">
+                                                                            <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                                                            </svg>
+                                                                            <h4 className="text-sm font-medium text-blue-600">AI牧師のコメント</h4>
+                                                                        </div>
+                                                                        <p className="text-slate-700 text-sm break-words">
+                                                                            {choiceComment}
+                                                                            {choiceTyping && (
+                                                                                <span className="inline-block w-2 h-4 ml-1 bg-blue-600 animate-pulse" />
+                                                                            )}
+                                                                        </p>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        ) : (
+                                                            <AIChat
+                                                                key={`question-${currentStep}`}
+                                                                onNext={handleNext}
+                                                                question={topic.questions[currentStep]}
+                                                            />
+                                                        )}
                                                     </div>
                                                 </motion.div>
                                             )}

@@ -3,6 +3,7 @@
 import { categories } from '@/data/topics';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import TypewriterBubble from './components/TypewriterBubble';
 
 export default function Home() {
     return (
@@ -14,7 +15,7 @@ export default function Home() {
             </div>
 
             {/* ヒーローセクション */}
-            <div className="relative min-h-[30vh] sm:min-h-[20vh] flex items-center justify-center overflow-hidden mb-[2vh] sm:mb-[1vh]">
+            <div className="relative min-h-[30vh] sm:min-h-[20vh] md:min-h-[50vh] flex items-center justify-center overflow-hidden mb-[2vh] sm:mb-[1vh] py-1 md:py-24">
                 {/* 背景グラデーション */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-blue-500 to-blue-300 opacity-90"></div>
                 {/* 泡の装飾 */}
@@ -40,7 +41,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative z-10 text-center px-2 max-w-5xl mx-auto py-8 sm:py-0"
+                    className="relative z-10 text-center px-2 max-w-5xl mx-auto py-6 sm:py-0 md:py-12"
                 >
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
@@ -53,15 +54,8 @@ export default function Home() {
                             <span className="block md:inline md:ml-4 mt-2 md:mt-0 text-shadow-lg">DIVE IN!</span>
                         </h1>
                     </motion.div>
-                    {/* 吹き出しテキスト */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.7 }}
-                        className="relative max-w-fit mx-auto bg-white/90 text-blue-800 text-sm md:text-base leading-snug px-3 py-2 rounded-lg shadow tracking-wide mt-4"
-                    >
-                        学びたいトピックを選んでね💡📖
-                    </motion.div>
+                    {/* AI牧師の吹き出し（タイプライターアニメーション付き、単独表示） */}
+                    <TypewriterBubble text={"こんにちは！今日はどんなことを一緒に深掘りしましょうか？\n学びたいトピックを選んでね💡📖"} />
                 </motion.div>
             </div>
 
@@ -104,18 +98,26 @@ export default function Home() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="h-[180px]"
+                                    className="h-[220px]"
                                 >
                                     <Link href={`/topics/${topic.id}`}>
                                         <div className="group relative h-full">
                                             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/40 to-blue-200/30 rounded-lg blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                                             <div className="relative bg-white/80 backdrop-blur-sm rounded-lg p-6 hover:shadow-xl transition-all duration-300 border border-blue-100/50 h-full flex flex-col">
-                                                <h3 className="text-3xl font-bold text-blue-900 mb-3">
+                                                <h3 className="text-3xl font-bold text-blue-900 mb-2">
                                                     {topic.title}
                                                 </h3>
-                                                <p className="text-blue-800 mb-4 text-base line-clamp-2">
-                                                    {topic.description}
-                                                </p>
+                                                {/* 聖句のみ表示 */}
+                                                {topic.bibleReferences && topic.bibleReferences[0] && (
+                                                    <div className="mb-2">
+                                                        <p className="text-blue-700 text-sm bg-blue-50/60 rounded px-2 py-1">
+                                                            {`「${topic.bibleReferences[0].text}」`}
+                                                        </p>
+                                                        <div className="text-blue-500 text-xs mt-1 text-right pr-1">
+                                                            {`${topic.bibleReferences[0].book} ${topic.bibleReferences[0].chapter}:${topic.bibleReferences[0].verse}`}
+                                                        </div>
+                                                    </div>
+                                                )}
                                                 <div className="flex-grow"></div>
                                                 <div className="flex items-center text-blue-600 font-medium">
                                                     <span>詳しく見る</span>
