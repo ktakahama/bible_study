@@ -55,7 +55,7 @@ export default function Home() {
                         </h1>
                     </motion.div>
                     {/* AI牧師の吹き出し（タイプライターアニメーション付き、単独表示） */}
-                    <TypewriterBubble text={"こんにちは！今日はどんなことを一緒に深掘りしましょうか？\n学びたいトピックを選んでね💡📖"} />
+                    <TypewriterBubble text={"こんにちは！今日はどのトピックを一緒に深掘りしましょうか？\n対話形式で私と一緒に学びましょう💡📖"} />
                 </motion.div>
             </div>
 
